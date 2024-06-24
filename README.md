@@ -10,8 +10,8 @@ Brief description of your project.
 
 ## Features
 
-- Feature 1
-- Feature 2
+- Embed Documents
+- Intergrate with audio
 - Feature 3
 
 ## Installation
