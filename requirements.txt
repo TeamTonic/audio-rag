@@ -3,3 +3,4 @@ llama-index-embeddings-huggingface
 python-dotenv
 docx2txt
 llama-index-llms-huggingface
+gradio

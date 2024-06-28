@@ -12,11 +12,15 @@ import os
 import dotenv
 
 Settings.llm = HuggingFaceInferenceAPI(
-    model_name="mistralai/Mistral-7B-Instruct-v0.3", token=os.getenv("HUGGINGFACEHUB_API_TOKEN")
+    model_name="mistralai/Mistral-7B-Instruct-v0.3", 
+    token=os.getenv("HUGGINGFACEHUB_API_TOKEN"),
 )
-Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
 
-text_splitter = TokenTextSplitter(chunk_size=512)
+Settings.embed_model = HuggingFaceEmbedding(
+    model_name="BAAI/bge-small-en-v1.5"
+    )
+
+# text_splitter = TokenTextSplitter(chunk_size=512)
 # embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
 
 
@@ -25,7 +29,8 @@ documents = SimpleDirectoryReader(os.getenv("DIRECTORY_TO_EMBED")).load_data()
 
 pipeline = IngestionPipeline(
     transformations=[
-        SentenceSplitter(),
+        # TokenTextSplitter(chunk_size=512),
+        SentenceSplitter(chunk_size=512),
         HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5"),
     ],
     docstore=SimpleDocumentStore(),
